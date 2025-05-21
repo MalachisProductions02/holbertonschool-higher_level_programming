@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 """Defines a Rectangle class."""
-
+    
 
 class Rectangle:
-    """Defines a rectangle with width and height, with area and perimeter methods."""
+    """
+    Defines a rectangle with width and height,
+    with area and perimeter methods.
+    """
 
     def __init__(self, width=0, height=0):
         self.width = width
@@ -47,4 +50,5 @@ class Rectangle:
         return "\n".join(["#" * self.width for _ in range(self.height)])
 
     def __repr__(self):
-        return f"Rectangle({self.width}, {self.height})"
+        return "Rectangle({}, {})".format(self.width, self.height)
+ 
