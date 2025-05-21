@@ -56,7 +56,3 @@ class Rectangle:
         for _ in range(self.__height):
             lines.append("#" * self.__width)
         return "\n".join(lines)
-
-    def __repr__(self):
-        """Return official string representation to recreate the object."""
-        return f"Rectangle({self.__width}, {self.__height})"
