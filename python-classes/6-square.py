@@ -31,9 +31,12 @@ class Square:
     @position.setter
     def position(self, value):
         """Set the position with validation."""
-        if (not isinstance(value, tuple) or len(value) != 2 or
+        if (
+            not isinstance(value, tuple) or
+            len(value) != 2 or
             not all(isinstance(num, int) for num in value) or
-            not all(num >= 0 for num in value)):
+            not all(num >= 0 for num in value)
+        ):
             raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = value
 
@@ -43,14 +46,14 @@ class Square:
 
     def my_print(self):
         """Print the square with the character #, respecting the position."""
+        print(self.__str__())
+
+    def __str__(self):
+        """Return the string representation of the square."""
         if self.__size == 0:
-            print()
-            return
+            return ""
 
-        # Print newlines for vertical offset (position[1])
-        for _ in range(self.__position[1]):
-            print()
-
-        # Print each row of the square with leading spaces (position[0])
+        lines = ["\n" * self.__position[1]]
         for _ in range(self.__size):
-            print(" " * self.__position[0] + "#" * self.__size)
+            lines.append(" " * self.__position[0] + "#" * self.__size + "\n")
+        return "".join(lines).rstrip()
