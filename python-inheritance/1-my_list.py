@@ -1,16 +1,10 @@
 #!/usr/bin/python3
-"""
-Este módulo define la clase MyList que hereda de list.
-"""
+"""Defines a class MyList that inherits from list."""
 
 
 class MyList(list):
-    """
-    Clase que hereda de list e incluye un método para imprimir la lista ordenada.
-    """
+    """Custom list class that can print the list in sorted order."""
 
     def print_sorted(self):
-        """
-        Imprime la lista ordenada (sin modificar la original).
-        """
+        """Prints the list in ascending sorted order."""
         print(sorted(self))
