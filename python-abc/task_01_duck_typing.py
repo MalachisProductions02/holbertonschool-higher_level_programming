@@ -6,55 +6,47 @@ import math
 
 
 class Shape(ABC):
-    """Abstract base class representing a geometric shape."""
+    """Abstract base class representing a shape."""
 
     @abstractmethod
-    def area(self) -> float:
-        """Calculate and return the area of the shape."""
+    def area(self):
+        """Calculate the area of the shape."""
         pass
 
     @abstractmethod
-    def perimeter(self) -> float:
-        """Calculate and return the perimeter of the shape."""
+    def perimeter(self):
+        """Calculate the perimeter of the shape."""
         pass
 
 
 class Circle(Shape):
     """Concrete class representing a circle."""
 
-    def __init__(self, radius: float) -> None:
-        if radius <= 0:
-            raise ValueError("Radius must be a positive number")
+    def __init__(self, radius):
         self.radius = radius
 
-    def area(self) -> float:
+    def area(self):
         return math.pi * self.radius ** 2
 
-    def perimeter(self) -> float:
+    def perimeter(self):
         return 2 * math.pi * self.radius
 
 
 class Rectangle(Shape):
     """Concrete class representing a rectangle."""
 
-    def __init__(self, width: float, height: float) -> None:
-        if width <= 0 or height <= 0:
-            raise ValueError("Width and height must be positive numbers")
+    def __init__(self, width, height):
         self.width = width
         self.height = height
 
-    def area(self) -> float:
+    def area(self):
         return self.width * self.height
 
-    def perimeter(self) -> float:
+    def perimeter(self):
         return 2 * (self.width + self.height)
 
 
-def shape_info(shape: Shape) -> None:
-    """
-    Print area and perimeter of any shape-like object.
-
-    Assumes the object passed implements area() and perimeter() methods.
-    """
+def shape_info(shape):
+    """Print the area and perimeter of a shape using duck typing."""
     print("Area:", shape.area())
     print("Perimeter:", shape.perimeter())
