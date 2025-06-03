@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module that defines a Student class with optional attribute filtering"""
+"""Module that defines a Student class"""
 
 
 class Student:
@@ -16,10 +16,7 @@ class Student:
         Return dictionary representation of the student.
         If attrs is a list of strings, only include those attributes.
         """
-        if isinstance(attrs, list) and all(isinstance(attr, str) for attr in attrs):
-            return {
-                k: getattr(self, k)
-                for k in attrs
-                if hasattr(self, k)
-            }
+        if (isinstance(attrs, list) and
+                all(isinstance(attr, str) for attr in attrs)):
+            return {k: getattr(self, k) for k in attrs if hasattr(self, k)}
         return self.__dict__.copy()
