@@ -5,6 +5,7 @@ with simple data structure (list, dict, string, int, boolean)
 for JSON serialization of an object.
 """
 
+
 def class_to_json(obj):
     """
     Return the dictionary representation of an object
