@@ -4,12 +4,11 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-# Dictionary to store users in memory
 users = {}
 
 @app.route('/')
 def home():
-    return "Welcome to the Flask API"
+    return jsonify({"message": "Welcome to the Flask API"})
 
 @app.route('/status')
 def status():
