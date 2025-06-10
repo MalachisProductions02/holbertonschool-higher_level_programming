@@ -12,7 +12,7 @@ def home():
 
 @app.route('/status')
 def status():
-    return "OK"
+    return jsonify({"status": "OK"})
 
 @app.route('/data')
 def get_usernames():
