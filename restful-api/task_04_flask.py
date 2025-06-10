@@ -8,11 +8,11 @@ users = {}
 
 @app.route('/')
 def home():
-    return jsonify({"message": "Welcome to the Flask API"})
+    return jsonify({"message": "Welcome"})
 
 @app.route('/status')
 def status():
-    return jsonify({"status": "OK"})
+    return "OK", 200
 
 @app.route('/data')
 def get_usernames():
