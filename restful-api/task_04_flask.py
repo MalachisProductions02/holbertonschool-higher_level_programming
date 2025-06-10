@@ -8,7 +8,7 @@ users = {}
 
 @app.route('/')
 def home():
-    return "Welcome", 200
+    return "Welcome to the Flask API", 200
 
 @app.route('/status')
 def status():
