@@ -11,11 +11,11 @@ users = {}
 def home():
     return "Welcome to the Flask API"
 
-@app.route('/status'):
+@app.route('/status')
 def status():
     return "OK"
 
-@app.route('/data'):
+@app.route('/data')
 def get_usernames():
     return jsonify(list(users.keys()))
 
