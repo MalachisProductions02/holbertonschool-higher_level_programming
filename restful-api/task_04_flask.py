@@ -8,7 +8,7 @@ users = {}
 
 @app.route('/')
 def home():
-    return jsonify({"message": "Welcome"})
+    return "Welcome", 200
 
 @app.route('/status')
 def status():
@@ -33,7 +33,7 @@ def add_user():
     if not data or 'username' not in data:
         return jsonify({"error": "Username is required"}), 400
 
-    username = data['username']
+    username = data['username'].lower()
 
     if username in users:
         return jsonify({"error": "Username already exists"}), 400
