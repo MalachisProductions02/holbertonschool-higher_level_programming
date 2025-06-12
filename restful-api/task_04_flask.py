@@ -43,11 +43,11 @@ def add_user():
     if username in users:
         return jsonify({"error": "Username already exists"}), 400
 
-    users[username] = user_data
+    users[username] = data
     return jsonify({
-        "message": "User added", 
-        "user": user_data
-        }), 201
+        "message": "User added",
+        "user": data
+    }), 201
 
 
 if __name__ == "__main__":
