@@ -16,7 +16,7 @@ app.config["JWT_SECRET_KEY"] = "super-secret-key" #Strong key
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 
 #=== Authentication objects ===
-Auth = HTTPBasicAuth()
+auth = HTTPBasicAuth()
 jwt = JWTManager(app)
 
 #=== In-memory user storage ===
