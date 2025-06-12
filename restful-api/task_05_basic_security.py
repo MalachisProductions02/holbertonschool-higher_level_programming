@@ -70,7 +70,7 @@ def admin_only():
 #=== Custom JWT Error Handlers ===
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
-    retrun jsonify({"error": "Missing or invalid token"}), 401
+    return jsonify({"error": "Missing or invalid token"}), 401
 
 @jwt.invalid_token_loader
 def handle_invalid_token_error(err):
