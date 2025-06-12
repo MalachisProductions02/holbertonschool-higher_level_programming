@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from flask_jwt_extended import (
     JWTManager, create_access_token,
-    jwt_required, get_jwt_identity, get_jwt
+    jwt_required, get_jwt_identity
 )
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import timedelta
@@ -12,7 +12,7 @@ from datetime import timedelta
 app = Flask(__name__)
 
 #=== Secret key for JWT ===
-app.config["JWT_SECRET_KEY"] = "super-secret-key" #Strong key
+app.config["JWT_SECRET_KEY"] = "super-secret-key"  # Strong key
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 
 #=== Authentication objects ===
@@ -49,20 +49,27 @@ def login():
     if not data or "username" not in data or "password" not in data:
         return jsonify({"error": "Invalid credentials"}), 401
 
-    access_token = create_access_token(idnetity={"username": username, "role": user["role"]})
+    username = data["username"]
+    password = data["password"]
+    user = users.get(username)
+
+    if not user or not check_password_hash(user["password"], password):
+        return jsonify({"error": "Invalid credentials"}), 401
+
+    access_token = create_access_token(identity={"username": username, "role": user["role"]})
     return jsonify(access_token=access_token)
 
 #=== JWT Protected Route ===
 @app.route("/jwt-protected")
 @jwt_required()
 def jwt_protected():
-    return "JTW Auth: Access Granted"
+    return "JWT Auth: Access Granted"
 
 #=== Role-based Protected Route ===
 @app.route("/admin-only")
 @jwt_required()
 def admin_only():
-    identity = jwt_get_identity()
+    identity = get_jwt_identity()
     if identity.get("role") != "admin":
         return jsonify({"error": "Admin access required"}), 403
     return "Admin Access: Access Granted"
