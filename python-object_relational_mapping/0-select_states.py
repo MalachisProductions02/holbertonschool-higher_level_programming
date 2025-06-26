@@ -42,7 +42,7 @@ def list_states(username, password, db_name):
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage: ./0-select_states.py <username> <password> <database_name>")
+        print("Usage: ./0-select_states.py root root hbtn_0e_0_usa")
         sys.exit(1)
 
     list_states(sys.argv[1], sys.argv[2], sys.argv[3])
