@@ -13,7 +13,7 @@ def filter_states(username, password, db_name):
     Connect to the database and list states whose name starts with 'N', ordered by id ascending.
     """
     db = MySQLdb.connect(
-        host="localhost",
+        host="127.0.0.1",
         port=3306,
         user=username,
         passwd=password,
