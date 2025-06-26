@@ -1,8 +1,11 @@
 #!/usr/bin/python3
 """
 This script lists all states from the database hbtn_0e_0_usa.
-It uses MySQLdb to connect to a MySQL server running on localhost at port 3306.
-Usage: ./0-select_states.py <mysql username> <mysql password> <database name>
+It connects to a MySQL server running on localhost at port 3306
+and retrieves all rows in the 'states' table, sorted by id in ascending order.
+
+Usage:
+    ./0-select_states.py <mysql username> <mysql password> <database name>
 """
 
 import MySQLdb
@@ -11,7 +14,11 @@ import sys
 
 def list_states(username, password, db_name):
     """
-    Connects to the database and lists all states ordered by id ascending.
+    Connects to the MySQL database and prints all states ordered by id.
+    Args:
+        username (str): The MySQL username.
+        password (str): The MySQL password.
+        db_name (str): The name of the database.
     """
     db = MySQLdb.connect(
         host="localhost",
@@ -29,4 +36,8 @@ def list_states(username, password, db_name):
 
 
 if __name__ == "__main__":
+    if len(sys.argv) != 4:
+        print("Usage: ./0-select_states.py <username> <password> <database_name>")
+        sys.exit(1)
+
     list_states(sys.argv[1], sys.argv[2], sys.argv[3])
