@@ -15,24 +15,29 @@ import sys
 def list_states(username, password, db_name):
     """
     Connects to the MySQL database and prints all states ordered by id.
+
     Args:
         username (str): The MySQL username.
         password (str): The MySQL password.
         db_name (str): The name of the database.
     """
-    db = MySQLdb.connect(
-        host="localhost",
-        port=3306,
-        user=username,
-        passwd=password,
-        db=db_name
-    )
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM states ORDER BY id ASC")
-    for row in cursor.fetchall():
-        print(row)
-    cursor.close()
-    db.close()
+    try:
+        db = MySQLdb.connect(
+            host="localhost",
+            port=3306,
+            user=username,
+            passwd=password,
+            db=db_name
+        )
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM states ORDER BY id ASC")
+        rows = cursor.fetchall()
+        for row in rows:
+            print(row)
+        cursor.close()
+        db.close()
+    except Exception as e:
+        print("Error connecting to database:", e)
 
 
 if __name__ == "__main__":
