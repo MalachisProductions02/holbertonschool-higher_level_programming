@@ -12,20 +12,23 @@ def filter_states(username, password, db_name):
     """
     Connect to the database and list states whose name starts with 'N', ordered by id ascending.
     """
-    db = MySQLdb.connect(
-        host="localhost",
-        port=3306,
-        user=username,
-        passwd=password,
-        db=db_name
-    )
-    cursor = db.cursor()
-    query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
-    cursor.execute(query)
-    for row in cursor.fetchall():
-        print(row)
-    cursor.close()
-    db.close()
+    try:
+        db = MySQLdb.connect(
+            host="localhost",
+            port=3306,
+            user=username,
+            passwd=password,
+            db=db_name
+        )
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
+        rows = cursor.fetchall()
+        for row in rows:
+            print(row)
+        cursor.close()
+        db.close()
+    except Exception as e:
+        print("Error connecting to database:", e)
 
 
 if __name__ == "__main__":
