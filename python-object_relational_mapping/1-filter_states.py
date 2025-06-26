@@ -32,4 +32,5 @@ if __name__ == "__main__":
     if len(sys.argv) != 4:
         print("Usage: ./1-filter_states.py root root hbtn_0e_0_usa")
         sys.exit(1)
+        
     filter_states(sys.argv[1], sys.argv[2], sys.argv[3])
