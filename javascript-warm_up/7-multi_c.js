@@ -2,8 +2,10 @@
 const arg = process.argv[2];
 const count = parseInt(arg, 10);
 
-if (!count || count < 1) {
-  console.log('Missing number of occurrences');
+if (!arg || isNaN(count) || count <= 0) {
+  if (!arg || isNaN(count)) {
+    console.log('Missing number of occurrences');
+  }
 } else {
   let i = 0;
   while (i < count) {
